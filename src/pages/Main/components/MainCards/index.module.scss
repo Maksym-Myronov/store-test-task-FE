@@ -1,0 +1,34 @@
+@import 'src/styles/palette';
+@import 'src/styles/mixins';
+
+.cards {
+  height: 330px;
+  background: $white;
+  border-radius: 6px;
+
+  &__block {
+    @include d-flex(null, space-between, center);
+    margin-top: 20px;
+  }
+
+  &__container {
+    padding: 10px 10px 0 10px;
+  }
+
+  &__button {
+    background: #637338;
+    color: $white;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+
+  &__title {
+    height: 63px;
+  }
+
+  &__image {
+    width: 250px;
+    border-radius: 6px 6px 0 0;
+  }
+}
