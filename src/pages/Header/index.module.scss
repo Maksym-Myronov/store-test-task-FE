@@ -1,0 +1,19 @@
+@import 'src/styles/palette';
+@import 'src/styles/mixins';
+
+.header {
+  @include d-flex(null, space-between, center);
+  width: 100%;
+  padding: 20px;
+  color: $white;
+  background: #8d9577;
+
+  &__title {
+    font-size: 1rem;
+    font-weight: 600;
+  }
+
+  &__basket {
+    cursor: pointer;
+  }
+}

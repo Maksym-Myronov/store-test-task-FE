@@ -1,5 +1,5 @@
 /* Links */
-@use './styles/fonts';
+@use 'styles/fonts/index.scss';
 
 *,
 *::before,
@@ -54,9 +54,9 @@ body {
 }
 
 body {
-  font-family: 'Open Sans', sans-serif;
+  font-family: 'Playfair Display', serif;
   font-weight: 400;
-  max-width: 1920px;
+  max-width: 1440px;
   margin: 0 auto;
   padding: 0;
   overflow: hidden;
