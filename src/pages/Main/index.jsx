@@ -7,7 +7,7 @@ import styles from './index.module.scss';
 
 export const Main = () => {
   const itemFromApi = useSelector((state) => state.cards.cards.cards);
-  const getFirstTenItemsFromArray = itemFromApi?.slice(0, 14);
+  const getFirstTenItemsFromArray = itemFromApi?.slice(1, 15);
   const dispatch = useDispatch();
 
   useEffect(() => {
