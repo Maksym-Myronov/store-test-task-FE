@@ -1,12 +1,14 @@
+import { useDispatch } from 'react-redux';
+import { addToBasket } from '../../../../store/basketSlice';
 // Styles
 import styles from './index.module.scss';
-import secondVector from '../../../../assets/images/Group 58.svg';
 
 export const MainCards = ({ id, title, items, price }) => {
   const firstImageFromArray = items[0];
+  const dispatch = useDispatch();
 
   const handleAddId = (cardId) => {
-    console.log({ cardId, title, items, price });
+    dispatch(addToBasket({ id: cardId, title, image: items[0], price }));
   };
 
   return (
