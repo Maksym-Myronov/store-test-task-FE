@@ -9,7 +9,7 @@ const initialState = {
 export const fetchCardsFromApi = createAsyncThunk(
   'cards/fetchCardsFromApi',
   async () => {
-    const response = await fetch(`https://api.escuelajs.co/api/v1/products`);
+    const response = await fetch(`https://fakestoreapi.com/products`);
     const data = await response.json();
     return { cards: data };
   }
@@ -26,7 +26,12 @@ const cardSlice = createSlice({
       })
       .addCase(fetchCardsFromApi.fulfilled, (state, action) => {
         state.status = 'succeeded';
-        state.cards = action.payload;
+        if (action.payload.cards) {
+          state.cards = action.payload.cards.map((item) => ({
+            ...item,
+            count: 1
+          }));
+        }
       })
       .addCase(fetchCardsFromApi.rejected, (state) => {
         state.status = 'failed';

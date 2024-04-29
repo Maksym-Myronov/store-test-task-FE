@@ -6,8 +6,10 @@ import { MainCards } from './components/MainCards/index';
 import styles from './index.module.scss';
 
 export const Main = () => {
-  const itemFromApi = useSelector((state) => state.cards.cards.cards);
-  const getFirstTenItemsFromArray = itemFromApi?.slice(1, 15);
+  const itemFromApi = useSelector((state) => state.cards.cards);
+
+  const getFirstTenItemsFromArray = itemFromApi?.slice(0, 14);
+  console.log(itemFromApi);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -15,16 +17,19 @@ export const Main = () => {
   }, [dispatch]);
 
   return (
-    <div className={styles.cards__container}>
-      {getFirstTenItemsFromArray?.map((item) => (
-        <MainCards
-          key={item.id}
-          id={item.id}
-          title={item.title}
-          price={item.price}
-          items={item.images}
-        />
-      ))}
+    <div className={styles.cards}>
+      <div className={styles.cards__container}>
+        {getFirstTenItemsFromArray?.map((item) => (
+          <MainCards
+            key={item.id}
+            id={item.id}
+            title={item.title}
+            price={item.price}
+            items={item.image}
+            count={item.count}
+          />
+        ))}
+      </div>
     </div>
   );
 };

@@ -2,13 +2,14 @@
 @import 'src/styles/mixins';
 
 .cards {
-  height: 330px;
+  height: 300px;
   background: $white;
   border-radius: 6px;
+  text-align: center;
+  padding: 20px 0 0 0;
 
   &__block {
     @include d-flex(null, space-between, center);
-    margin-top: 20px;
   }
 
   &__container {
@@ -24,11 +25,12 @@
   }
 
   &__title {
-    height: 63px;
+    height: 100px;
+    margin: 20px 0;
   }
 
   &__image {
-    width: 250px;
+    height: 80px;
     border-radius: 6px 6px 0 0;
   }
 }
