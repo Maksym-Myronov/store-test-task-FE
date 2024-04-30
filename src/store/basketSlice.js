@@ -39,14 +39,23 @@ const basketSlice = createSlice({
     },
     decrementCount: (state, action) => {
       const { payload: id } = action;
-      state.basketItem = state.basketItem.map((item) =>
-        item.id === id ? { ...item, count: Math.max(0, item.count - 1) } : item
-      );
+      state.basketItem = state.basketItem.map((item) => {
+        if (item.id === id) {
+          const newCount = Math.max(0, item.count - 1);
+          const newPriceTotal = newCount * item.price;
+          return { ...item, count: newCount, priceTotal: newPriceTotal };
+        } else {
+          return item;
+        }
+      });
       state.basketItem = state.basketItem.filter((item) => item.count > 0);
+    },
+    emptyArray: (state) => {
+      state.basketItem = [];
     }
   }
 });
 
 export default basketSlice.reducer;
-export const { addToBasket, incrementCount, decrementCount } =
+export const { addToBasket, incrementCount, decrementCount, emptyArray } =
   basketSlice.actions;
