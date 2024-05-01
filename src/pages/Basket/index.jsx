@@ -5,6 +5,7 @@ import { decrementCount, incrementCount } from '../../store/basketSlice';
 import { InformationForm } from './components/InformationForm/index';
 // Styles
 import styles from './index.module.scss';
+import { EmptyBasket } from './components/EmptyBasket/index.jsx';
 
 export const Basket = memo(() => {
   const dataFire = useSelector((state) => state.basket.basketItem);
@@ -36,28 +37,34 @@ export const Basket = memo(() => {
 
   return (
     <div className={styles.basket}>
-      <div className={styles.basket__container}>
-        <div className={dataFire.length >= 6 ? styles.basket__card : undefined}>
-          {dataFire?.map((data) => (
-            <BasketItem
-              key={data.id}
-              id={data.id}
-              title={data.title}
-              image={data.image}
-              count={data.count}
-              priceTotal={data.priceTotal}
-              incrementCounts={incrementCounts}
-              decrementCounter={decrementCounter}
-            />
-          ))}
+      {dataFire.length < 1 ? (
+        <EmptyBasket />
+      ) : (
+        <div className={styles.basket__container}>
+          <div
+            className={dataFire.length >= 6 ? styles.basket__card : undefined}
+          >
+            {dataFire?.map((data) => (
+              <BasketItem
+                key={data.id}
+                id={data.id}
+                title={data.title}
+                image={data.image}
+                count={data.count}
+                priceTotal={data.priceTotal}
+                incrementCounts={incrementCounts}
+                decrementCounter={decrementCounter}
+              />
+            ))}
+          </div>
+          <InformationForm
+            totalPrice={totalPrice}
+            totalItems={totalItems}
+            dataFire={dataFire}
+            dispatch={dispatch}
+          />
         </div>
-        <InformationForm
-          totalPrice={totalPrice}
-          totalItems={totalItems}
-          dataFire={dataFire}
-          dispatch={dispatch}
-        />
-      </div>
+      )}
     </div>
   );
 });

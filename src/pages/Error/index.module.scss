@@ -1,17 +1,15 @@
 @import 'src/styles/palette';
 
 .error {
-  background: #fff6f1;
   text-align: center;
-
-  &__container {
-    width: 1500px;
-    margin: 0 auto;
-    background-image: url('src/assets/images/404 1.svg');
-    height: 100vh;
-    background-size: cover;
-    padding-top: 150px;
-  }
+  width: auto;
+  margin: 0 auto;
+  background: #fff6f1;
+  height: 100vh;
+  background-size: cover;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 
   &__title {
     color: #404a25;

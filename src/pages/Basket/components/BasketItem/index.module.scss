@@ -38,3 +38,44 @@
     margin-top: 20px;
   }
 }
+
+@media screen and (max-width: 768px) {
+  .basket__cards {
+    width: 650px;
+  }
+}
+
+@media screen and (max-width: 430px) {
+  .basket__cards {
+    width: 370px;
+
+    &__text {
+      max-width: 250px;
+      overflow-wrap: break-word;
+    }
+    &__photo {
+      width: 100px;
+    }
+  }
+}
+
+@media screen and (max-width: 390px) {
+  .basket__cards {
+    width: 270px;
+
+    &__text {
+      max-width: 180px;
+      overflow-wrap: break-word;
+      margin-bottom: 10px;
+    }
+
+    &__photo {
+      width: 65px;
+      height: 100px;
+    }
+
+    &__image {
+      height: 40px;
+    }
+  }
+}

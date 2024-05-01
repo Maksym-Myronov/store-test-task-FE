@@ -34,3 +34,25 @@
     border-radius: 6px 6px 0 0;
   }
 }
+
+@media screen and (max-width: 768px) {
+  .cards {
+    width: 200px;
+    margin-bottom: 40px;
+
+    &__image {
+      height: 60px;
+    }
+  }
+}
+
+@media screen and (max-width: 430px) {
+  .cards {
+    width: 180px;
+    margin-bottom: 40px;
+
+    &__image {
+      height: 60px;
+    }
+  }
+}

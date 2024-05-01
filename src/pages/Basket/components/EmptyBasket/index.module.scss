@@ -1,0 +1,82 @@
+@import 'src/styles/palette';
+@import 'src/styles/mixins';
+
+.empty {
+  @include d-flex(null, center, center);
+  height: 700px;
+  text-align: center;
+
+  &__title {
+    font-size: 3rem;
+    font-weight: 600;
+  }
+
+  &__text {
+    color: #8d9577;
+    margin: 30px 0;
+  }
+
+  &__button {
+    background: #637338;
+    color: $white;
+    padding: 15px 40px;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+}
+
+@media screen and (max-width: 1540px) {
+  .empty {
+    height: 700px;
+
+    &__title {
+      font-size: 3rem;
+      font-weight: 600;
+    }
+
+    &__text {
+      color: #8d9577;
+      margin: 30px 0;
+    }
+
+    &__button {
+      background: #637338;
+      color: $white;
+      padding: 15px 40px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+  }
+}
+
+@media screen and (max-width: 1440px) {
+  .empty {
+    height: 550px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .empty {
+    height: 600px;
+  }
+}
+
+@media screen and (max-width: 430px) {
+  .empty {
+    height: 550px;
+    padding: 0 40px 0 20px;
+
+    &__title {
+      font-size: 1.8rem;
+      font-weight: 600;
+    }
+
+    &__text {
+      font-size: 0.9rem;
+    }
+
+    &__button {
+      padding: 15px 40px;
+    }
+  }
+}
