@@ -18,9 +18,10 @@ export const BasketItem = ({
         <img src={image} alt="image" className={styles.basket__cards__image} />
       </div>
       <div className={styles.basket__cards__block}>
-        <p>
-          {title} <br /> <span>{floorNumber}$</span>
+        <p className={styles.basket__cards__text}>
+          {title} <br />{' '}
         </p>
+        <span className={styles.basket__cards__price}>{floorNumber}$</span>
         <div className={styles.basket__cards__counter}>
           <button
             className={styles.basket__cards__btn}

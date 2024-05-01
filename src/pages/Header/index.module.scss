@@ -28,3 +28,23 @@
     cursor: pointer;
   }
 }
+
+@media screen and (max-width: 1440px) {
+  .header {
+    &__container {
+      padding: 20px 35px 20px 22px;
+    }
+
+    &__link {
+      padding: 0 10px 0 22px;
+    }
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .header {
+    &__container {
+      padding: 20px 40px 20px 22px;
+    }
+  }
+}

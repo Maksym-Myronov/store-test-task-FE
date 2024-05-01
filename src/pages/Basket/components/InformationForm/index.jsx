@@ -1,4 +1,5 @@
 import { useEffect, useMemo, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { collection, addDoc } from 'firebase/firestore';
 import { db } from '../../../../config/firebase';
 import { emptyArray } from '../../../../store/basketSlice';
@@ -23,6 +24,7 @@ export const InformationForm = ({
   const [emailError, setEmailError] = useState('');
   const [phone, setPhone] = useState(localStorage.getItem('phone') || '+380');
   const [phoneError, setPhoneError] = useState('');
+  const navigate = useNavigate();
 
   useEffect(() => {
     localStorage.setItem('nameInput', nameInput);
@@ -60,7 +62,7 @@ export const InformationForm = ({
   };
 
   const handleEmailInputChange = (e) => {
-    const value = e.target.value.replace(/\s/g, '');
+    const value = e.target.value.trim();
     setEmailInput(value);
     setEmailError('');
     const emailRegex = /\S+@\S+\.\S+/;
@@ -68,6 +70,11 @@ export const InformationForm = ({
       setEmailError('Please enter your email address');
     } else if (!emailRegex.test(value)) {
       setEmailError('Please enter a valid email address');
+    } else if (
+      !value.includes('@gmail.com') &&
+      !value.includes('@example.com')
+    ) {
+      setEmailError('Please use a Gmail or Example email address');
     }
   };
 
@@ -91,7 +98,8 @@ export const InformationForm = ({
     setPhone(formattedNumber);
   };
 
-  const handleClick = async () => {
+  const handleClick = async (e) => {
+    e.preventDefault();
     if (
       !surname.trim() ||
       !nameInput.trim() ||
@@ -105,6 +113,13 @@ export const InformationForm = ({
       setSurnameError('Name, surname, and email cannot contain numbers');
     } else if (phone.length !== 17) {
       setPhoneError('Please enter a valid phone number');
+    } else if (!emailInput.includes('@') || !emailInput.includes('.com')) {
+      setEmailError('Please enter a valid email address');
+    } else if (
+      !emailInput.includes('@gmail.com') &&
+      !emailInput.includes('@example.com')
+    ) {
+      setEmailError('Please use a Gmail or Example email address');
     } else {
       try {
         const dataToAdd = {
@@ -118,14 +133,11 @@ export const InformationForm = ({
         };
 
         await addDoc(storeDataCollection, dataToAdd);
+        dispatch(emptyArray());
+        navigate('/success');
       } catch (err) {
         console.error(err);
       }
-      setNameInput('');
-      setSurname('');
-      setEmailInput('');
-      setPhone('+380');
-      dispatch(emptyArray());
     }
   };
 
@@ -137,6 +149,7 @@ export const InformationForm = ({
           className={styles.basket__order__input}
           value={nameInput}
           onChange={handleNameInputChange}
+          maxLength="10"
         />
         {nameError && <p style={{ color: 'red' }}>{nameError}</p>}
         <input
@@ -144,6 +157,7 @@ export const InformationForm = ({
           className={styles.basket__order__input}
           value={surname}
           onChange={handleSurnameInputChange}
+          maxLength="10"
         />
         {surnameError && <p style={{ color: 'red' }}>{surnameError}</p>}
         <input
@@ -151,6 +165,7 @@ export const InformationForm = ({
           className={styles.basket__order__input}
           value={emailInput}
           onChange={handleEmailInputChange}
+          maxLength="35"
         />
         {emailError && <p style={{ color: 'red' }}>{emailError}</p>}
         <input
